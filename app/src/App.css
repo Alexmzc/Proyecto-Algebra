@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 80px;
+}
+
+.App-header {
+  background-color: #fcfcfc;
+  height: 150px;
+  padding: 40px;
+}
+
+.App-header h2 {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+.App-header h2 span {
+  font-size: 16px;
+}
+
+.App-header .two {
+  font-size: 11px
+}
+
+.App-intro {
+  font-size: large;
+}
