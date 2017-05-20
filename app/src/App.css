@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -7,23 +8,46 @@
 }
 
 .App-header {
-  background-color: #fcfcfc;
-  height: 150px;
+  background-color: #fefefe;
   padding: 40px;
-}
-
-.App-header h2 {
-  font-weight: 300;
   text-transform: uppercase;
 }
-.App-header h2 span {
+
+.App-header .one{
   font-size: 16px;
+  margin: 0;
+  padding: 20px 0px 0px 0px;
 }
 
 .App-header .two {
-  font-size: 11px
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
 }
 
-.App-intro {
-  font-size: large;
+.App-home {
+  margin: 25px;
+}
+.App-home h1 {
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 21px;
+}
+
+.App-home h5 {
+  font-weight: 400;
+}
+.App-home p {
+  font-weight: 300;
+}
+
+hr {
+  border-color: #f9f9f9;
+}
+
+footer {
+  text-align: center;
+  margin: 45px;
+  padding: 100px 0px 0px 0px;
+  font-size: 12px;
 }
