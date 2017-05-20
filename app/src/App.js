@@ -14,38 +14,51 @@ class App extends Component {
           <p className="two">Waldo Ancacoy - Michel Muñoz - Felipe Schneeberger</p>
         </div>
         <div className="App-home">
-          <h1>¿Que necesitas aprender?</h1>
           <div className="row">
-            <div className="col-md-4 offset-4">
-              <hr/>
+            <h1>¿Que necesitas aprender?</h1>
+            <div className="row">
+              <div className="col-md-4 col-md-offset-4">
+                <hr/>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-offset-3 col-md-3">
+                <h4>Conjuntos</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
+                  Nullam vitae lorem eget diam tincidunt vehicula.</p>
+                <button type="button" className="btn btn-primary btn-sm">Ver mas información...</button>
+              </div>
+              <div className="col-md-3">
+                <h4>Función Polinomial</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
+                  Nullam vitae lorem eget diam tincidunt vehicula.</p>
+                <button type="button" className="btn btn-primary btn-sm">Ver mas información...</button>
+              </div>
             </div>
           </div>
-          <div className="row">
-            <div className="offset-2 col-md-2">
-              <h5>Logica Proposicional</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
-                Nullam vitae lorem eget diam tincidunt vehicula.</p>
-              <button type="button" className="btn btn-outline-primary btn-sm">Ver mas...</button>
+          <div className="row m-top-30">
+            <h1>¿Que necesitas resolver?</h1>
+            <div className="row">
+              <div className="col-md-4 col-md-offset-4">
+                <hr/>
+              </div>
             </div>
-            <div className="col-md-2">
-              <h5>Conjuntos</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
-                Nullam vitae lorem eget diam tincidunt vehicula.</p>
-              <button type="button" className="btn btn-outline-primary btn-sm">Ver mas...</button>
-            </div>
-            <div className="col-md-2">
-              <h5>Funciones Cuadraticas</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
-                Nullam vitae lorem eget diam tincidunt vehicula.</p>
-              <button type="button" className="btn btn-outline-primary btn-sm">Ver mas...</button>
-            </div>
-            <div className="col-md-2">
-              <h5>Función Polinomial</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
-                Nullam vitae lorem eget diam tincidunt vehicula.</p>
-              <button type="button" className="btn btn-outline-primary btn-sm">Ver mas...</button>
+            <div className="row">
+              <div className="col-md-offset-3 col-md-3">
+                <h4>Logica Proposicional</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
+                  Nullam vitae lorem eget diam tincidunt vehicula.</p>
+                <button type="button" className="btn btn-primary btn-sm">Resolver...</button>
+              </div>
+              <div className="col-md-3">
+                <h4>Funciones Cuadraticas</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
+                  Nullam vitae lorem eget diam tincidunt vehicula.</p>
+                <button type="button" className="btn btn-primary btn-sm">Resolver...</button>
+              </div>
             </div>
           </div>
+
         </div>
         <footer>
           <img src={pi} width="15px"/>
