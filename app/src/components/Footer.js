@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import pi from './../favicon.png';
+import pi from './../images/favicon.png';
 
 class Footer extends Component {
   render(){

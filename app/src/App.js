@@ -4,11 +4,12 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import './Bootstrap.css';
 import './App.css';
+import 'animate.css/animate.min.css'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App fadeIn animated">
         <Header/>
         <main className="App-home">
           {this.props.children}

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Logic extends Component {
+class Sets extends Component {
   render() {
     return (
       <div className="fadeIn animated">
-        <h1>Logica</h1>
+        <h1>Conjuntos</h1>
       </div>
     );
   }
 }
 
-export default Logic;
+export default Sets;
