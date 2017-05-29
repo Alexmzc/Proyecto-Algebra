@@ -13,17 +13,12 @@ class Home extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-offset-3 col-md-3">
+            <div className="col-md-offset-3 col-md-6">
               <h4>Conjuntos</h4>
-              <p>Lorem ipsum dasdsadsadset, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
-                Nullam vitae lorem eget diam tincidunt vehicula.</p>
+              <p>En esta sección podras encontrar a lo largo de la materia los conceptos y ejemplos 
+              necesarios para que puedas llegar a entender la materia de Conjuntos y asi también poder 
+              resolver tus dudas y mejorar tu aprendizaje...</p>
               <Link to="/sets" className="btn btn-primary btn-sm">Ver mas información...</Link>
-            </div>
-            <div className="col-md-3">
-              <h4>Función Polinomial</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
-                Nullam vitae lorem eget diam tincidunt vehicula.</p>
-              <Link to="/polynomial" className="btn btn-primary btn-sm">Ver mas información...</Link>
             </div>
           </div>
         </div>
@@ -35,17 +30,12 @@ class Home extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-offset-3 col-md-3">
+            <div className="col-md-offset-3 col-md-6">
               <h4>Logica Proposicional</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
-                Nullam vitae lorem eget diam tincidunt vehicula.</p>
+              <p>En esta sección te facilitamos una interactiva y útil calculadora con la cual 
+              podras desarrollar sin problemas tus ejercicios de Lógica Proposicional, junto con
+              algunos tips que nunca estan de más...</p>
               <Link to="/logic" className="btn btn-primary btn-sm">Resolver...</Link>
-            </div>
-            <div className="col-md-3">
-              <h4>Funciones Cuadraticas</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
-                Nullam vitae lorem eget diam tincidunt vehicula.</p>
-              <Link to="/cuadratic" className="btn btn-primary btn-sm">Resolver...</Link>
             </div>
           </div>
         </div>

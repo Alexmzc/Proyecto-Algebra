@@ -55,3 +55,7 @@ footer {
 .m-top-30{
   margin-top: 30px;
 }
+
+.separator{
+  border: 1px solid #c0c0cc;
+}
