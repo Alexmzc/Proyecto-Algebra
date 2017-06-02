@@ -6,20 +6,16 @@ import App from './App';
 import Home from './components/Home';
 import Logic from './components/Logic';
 import Sets from './components/Sets';
-import Cuadratic from './components/Cuadratic';
-import Polynomial from './components/Polynomial';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 
 const Root = () => (
   <HashRouter>
-    <App>  
+    <App>
       <Route exact path="/" component={Home} />
       <Route exact path="/logic" component={Logic} />
       <Route exact path="/sets" component={Sets} />
-      <Route exact path="/cuadratic" component={Cuadratic} />
-      <Route exact path="/polynomial" component={Polynomial} />
     </App>
   </HashRouter>
 );
