@@ -6,16 +6,21 @@ class Sets extends Component {
   render() {
     return (
       <div className="fadeIn animated">
+      	<div>
         <h1>Conjuntos</h1>
         <p>La idea de conjuntos se puede expresar como una colección de 
         elementos o cosas que resultan tener algo en común</p>
         <p>Tal conjunto se representa mediante uso de Llaves ({i} {f}) donde 
         dentro de tales llaves se encontrarán los elementos propios del Conjunto.
-        <hr/>&rarr; Ejemplo: {i} 1,2,3,4 {f}</p><hr/>
+        <hr/>&rarr; Ejemplo: {i} 1,2,3,4 {f}</p>
+        </div>
+        <div className="separator"></div>
+        <hr/>
         <h4>Existen dos formas de Escrbir un Conjunto:</h4>
         <h5>Por Extensión y por Comprensión.-</h5>
         <hr/>
-        <div className="row">
+        <div>
+        	<div className="row">
         	<div className="col-md-5 col-md-offset-1">
         		<p><b>Por Extensión:</b> Que significa escribir explicitamente los elementos
 				    del conjunto, asi como en el ejemplo anterior donde todos los elementos 
@@ -38,7 +43,9 @@ class Sets extends Component {
 				    B seria la siguiente:<br/>
 				    B = {i} Todos los números desde 1 hasta 10 {f}</p>
         	</div>
+        	</div>
         </div>
+        <div className="separator"></div>
         <hr/>
         <h4>Los Conjunto pueden ser clasificados de dos formas:</h4>
         <h5>Como Finitos e Infinitos.-</h5>
@@ -84,6 +91,8 @@ class Sets extends Component {
 		        </div>
 		    </div>
 		    <hr/>
+		    <div className="separator"></div>
+		    <hr/>
 		    <h4>Subconjuntos.-</h4>
 		    <div className="row m-top-30">
 		    	<div className="col-md-8 col-md-offset-2">
@@ -116,6 +125,9 @@ class Sets extends Component {
 		        	A <b>&sub;</b> B o también A <b>&sube;</b> B.
 		        </div>
 		    </div>
+		    <hr/>
+		    <div className="separator"></div>
+		    <hr/>
 		    <h4>Conjunto Vacío: &empty;</h4>
 		    <div className="row m-top-30">
 	        	<div className="col-md-8 col-md-offset-2">
@@ -127,6 +139,9 @@ class Sets extends Component {
 	        		&empty; = {i} {f}, &rarr; #&empty; = 0.
 	        	</div>
 		    </div>
+		    <hr/>
+		    <div className="separator"></div>
+		    <hr/>
         </div>
       </div>
     );
