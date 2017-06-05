@@ -60,3 +60,8 @@ footer {
 .separator{
   border: 1px solid #c0c0cc;
 }
+
+.text-logic{
+  font-size: 24px;
+  height: 48px
+}

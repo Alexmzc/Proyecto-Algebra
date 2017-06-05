@@ -6,6 +6,8 @@ var printarray=[];  // used while printing the truth table
 var process_html_id="process"; // output location in html
 var result_html_id="result"; // output location in html
 var syntax_html_id="syntax"; // syntax description location in html
+var n1 = 0;
+var n0 = 0;
 // set by solver as it starts: used for printing to html
 var start_time=0;
 class Logic extends Component {
@@ -31,10 +33,12 @@ class Logic extends Component {
     var tmp;
     tmp=this.parse_dimacs(txt);
     if (tmp[0]!==0 && tmp.length>1) {
+      console.log(tmp[0]);
       // possibly dimacs
       if (tmp[1].length>0) return tmp;
     }
     // here we assume non-dimacs, parse as formula
+    console.log("no entra: "+tmp[0]);
     tmp=this.parse_formula(txt);
     return tmp;
   }
@@ -71,7 +75,9 @@ class Logic extends Component {
     tmp=this.parse_expression_tree(txt,0);
     if (this.err_data(tmp)) return tmp;
     exp=tmp[0];
+    console.log("exp: "+exp);
     pos=tmp[1];
+    console.log("pos: "+pos);
     tmp=this.parse_skip(txt,pos);
     if (tmp<txt.length)
       return (this.parse_error("remaining text at "+txt.substring(pos)));
@@ -192,6 +198,8 @@ class Logic extends Component {
   build(txt){
     console.log("build");
     document.getElementById('result').innerHTML = "";
+    n1 = 0;
+    n0 = 0;
     this.build_aux(txt);
   }
   build_aux(txt) {
@@ -213,6 +221,13 @@ class Logic extends Component {
     }
     res=this.print_truthtable(res);
     this.show_process("finished");
+    if(Math.pow(2, maxvarnr) == n1){
+      console.log("TAUTOLOGIA");
+    }else if(Math.pow(2, maxvarnr) == n0){
+      console.log("CONTRADICCIÓN");
+    }else{
+      console.log("CONTINGENCIA");
+    }
     this.show_result("<tt>"+res.replace(/\n/g,"<br>")+"</tt>");
   }
   handleClick(e) {
@@ -343,6 +358,7 @@ class Logic extends Component {
     reslst.push(s2);
     // push values to valuation lists and print
     rowcount=Math.pow(2,maxvarnr);
+    console.log("primisias: "+maxvarnr)
     if (rowcount>1024)
       return "Table would contain "+rowcount+" rows: our printing limit is 1024 rows.";
     for(i=0;i<rowcount;i++) {
@@ -351,17 +367,19 @@ class Logic extends Component {
       for(j=1;j<=maxvarnr;j++) {
         n=i>>>(maxvarnr-j);
         r=n%2;
-        if (!r) varvals[j]=0;
-        else varvals[j]=1;
+        if (!r) varvals[j]=1;
+        else varvals[j]=0;
         v.push(varvals[j]);
         s="";
         for(k=0;k<origvars[j].length;k++) s+="&nbsp;";
         v.push(s);
       }
       if (syntax=="dpll") {
+        console.log("entro dpll");
         val=this.print_eval_dpll(frm,varvals);
         s=val;
       } else {
+        console.log("no entro dpll");
         val=this.print_eval_formula(frm,varvals,0);
         s=printarray.join("");
       }
@@ -370,6 +388,8 @@ class Logic extends Component {
       reslst.push(v.join(""));
     }
     // print resulting table
+    console.log("print result:: ");
+    console.log(reslst);
     res=reslst.join("\n");
     return res;
   }
@@ -486,8 +506,32 @@ class Logic extends Component {
     return -1; // error: should not happen
   }
   valfmt(s,depth) {
-    if (depth>0) return String("");
-    else return "<b>"+String(s)+"</b>";
+    if(depth>0){
+      return String("");
+    }else{
+      if(s){
+        n1 += 1
+      }else{
+        n0 += 1
+      }
+      return "<b>"+String(s)+"</b>";
+    }
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      propinput: ''
+    };
+  }
+  handleChange(event) {
+    this.setState({propinput: event.target.value});
+  }
+  handleClick2(str, event){
+    this.setState(function(prevState, props) {
+      return {
+        propinput: prevState.propinput + str
+      };
+    });
   }
   render() {
     return (
@@ -495,17 +539,38 @@ class Logic extends Component {
         <h1 className="text-center">Logica</h1>
         <div className="container">
           <div className="row">
-            <div className="col-md-12 wblock wblock1">
-              <textarea className="form-control" id="propinput">
-                (a -&gt; b) &amp; a &amp; -b
-              </textarea>
-              <div>
-                <button className="btn btn-small btn-primary"
-                onClick={this.handleClick.bind(this)}>Crear Tabla de Verdad</button>
+            <div className="col-md-12">
+              <div className="col-md-offset-2 col-md-8 text-center">
+                <div className="form-group">
+                  <div className="input-group">
+                    <input type="text" className="form-control text-logic" id="propinput" placeholder="Ingrese una proposición lógica... (p & q)" value={this.state.propinput} onChange={this.handleChange.bind(this)}/>
+                    <div className="input-group-addon btn btn-primary" onClick={this.handleClick.bind(this)}>Resolver</div>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " &")}>&</button></div>
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " -")}>-</button></div>
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ->")}>-></button></div>
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " |")}>|</button></div>
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " <->")}>{"<->"}</button></div>
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " xor")}>{"xor"}</button></div>
+                </div>
+                <br/><br/>
+                <div className="form-group">
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " p")}>p</button></div>
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " q")}>q</button></div>
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " r")}>r</button></div>
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " s")}>s</button></div>
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " t")}>t</button></div>
+                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " u")}>u</button></div>
+                </div>
               </div>
-              <h2>Result</h2>
-              <div className="wiblock">
-                <div id="result"></div>
+
+              <div className="col-md-12">
+                <h2>Result</h2>
+                <div className="wiblock">
+                  <div id="result"></div>
+                </div>
               </div>
             </div>
           </div>
