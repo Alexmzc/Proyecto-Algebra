@@ -222,10 +222,13 @@ class Logic extends Component {
     res=this.print_truthtable(res);
     this.show_process("finished");
     if(Math.pow(2, maxvarnr) == n1){
+      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Tautologia</strong>";
       console.log("TAUTOLOGIA");
     }else if(Math.pow(2, maxvarnr) == n0){
+      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contradicción</strong>";
       console.log("CONTRADICCIÓN");
     }else{
+      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contingencia</strong>";
       console.log("CONTINGENCIA");
     }
     this.show_result("<tt>"+res.replace(/\n/g,"<br>")+"</tt>");
@@ -382,6 +385,7 @@ class Logic extends Component {
         console.log("no entro dpll");
         val=this.print_eval_formula(frm,varvals,0);
         s=printarray.join("");
+        console.log("asd: "+ s);
       }
       v.push("&#124; ");
       v.push(s);
@@ -536,40 +540,79 @@ class Logic extends Component {
   render() {
     return (
       <div className="fadeIn animated">
-        <h1 className="text-center">Logica</h1>
+        <p className="text-center">Calculadora Lógica Proposicional</p>
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              <div className="col-md-offset-2 col-md-8 text-center">
+            <div className="col-xs-12">
+              <div className="col-xs-offset-2 col-xs-8 text-center">
                 <div className="form-group">
                   <div className="input-group">
                     <input type="text" className="form-control text-logic" id="propinput" placeholder="Ingrese una proposición lógica... (p & q)" value={this.state.propinput} onChange={this.handleChange.bind(this)}/>
                     <div className="input-group-addon btn btn-primary" onClick={this.handleClick.bind(this)}>Resolver</div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div className="col-xs-12">
+              <div className="col-xs-offset-2 col-xs-8 text-center">
                 <div className="form-group">
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " &")}>&</button></div>
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " -")}>-</button></div>
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ->")}>-></button></div>
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " |")}>|</button></div>
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " <->")}>{"<->"}</button></div>
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " xor")}>{"xor"}</button></div>
-                </div>
-                <br/><br/>
-                <div className="form-group">
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " p")}>p</button></div>
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " q")}>q</button></div>
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " r")}>r</button></div>
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " s")}>s</button></div>
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " t")}>t</button></div>
-                  <div className="col-md-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " u")}>u</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " &")}>&</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " -")}>-</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ->")}>-></button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " |")}>|</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " <->")}>{"<->"}</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " xor")}>{"xor"}</button></div>
+                  <br/><br/>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " p")}>p</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " q")}>q</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " r")}>r</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " s")}>s</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " t")}>t</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " u")}>u</button></div>
                 </div>
               </div>
-
-              <div className="col-md-12">
-                <h2>Result</h2>
-                <div className="wiblock">
-                  <div id="result"></div>
+            </div>
+            <div className="col-xs-12">
+              <div className="col-xs-offset-4 col-xs-4">
+                <hr/>
+              </div>
+            </div>
+            <div className="col-xs-12">
+              <div className="col-xs-offset-2 col-xs-8 text-center">
+                <div className="form-group">
+                  <h4>Resultado</h4>
+                  <p id="typeR">La proposicion lógica es una <strong>Contingencia</strong></p>
+                  <div id="result">
+                    <table className="table table-bordered table-striped">
+                      <tbody>
+                        <tr className="info">
+                          <td className="td-logic">p</td>
+                          <td className="td-logic">q</td>
+                          <td>p & q</td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>1</td>
+                          <td><b>1</b></td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>0</td>
+                          <td><b>0</b></td>
+                        </tr>
+                        <tr>
+                          <td>0</td>
+                          <td>1</td>
+                          <td><b>0</b></td>
+                        </tr>
+                        <tr>
+                          <td>0</td>
+                          <td>0</td>
+                          <td><b>0</b></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
