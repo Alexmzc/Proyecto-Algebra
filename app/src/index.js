@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Switch, Route } from 'react-router';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
+import { Route } from 'react-router';
+import { HashRouter } from 'react-router-dom';
 import App from './App';
 import Home from './components/Home';
 import Logic from './components/Logic';

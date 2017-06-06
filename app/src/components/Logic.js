@@ -3,13 +3,8 @@ var maxvarnr=0; // used by the rename_vars_in_formula
 var printlen=0; // used while printing
 var printlst=[]; // used while printing
 var printarray=[];  // used while printing the truth table
-var process_html_id="process"; // output location in html
-var result_html_id="result"; // output location in html
-var syntax_html_id="syntax"; // syntax description location in html
 var n1 = 0;
 var n0 = 0;
-// set by solver as it starts: used for printing to html
-var start_time=0;
 class Logic extends Component {
   show_result(txt) {
     console.log(txt);
@@ -56,7 +51,7 @@ class Logic extends Component {
       for(j=0;j<spl.length;j++) {
         sv=spl[j];
         if (!sv) continue;
-        nv=parseInt(sv);
+        nv=parseInt(sv, 10);
         if (isNaN(nv)) continue;
         if (nv===0) break;
         anv=nv;
@@ -86,7 +81,7 @@ class Logic extends Component {
   }
   parse_expression_tree(txt,pos) {
     console.log("parse expretion tree");
-    var isneg,exp,op,node,tmp;
+    var isneg,exp,op,tmp;
     pos=this.parse_skip(txt,pos);
     isneg=false;
     if (this.parse_isatpos(txt,pos,"-")) { isneg=true; pos++;}
@@ -123,13 +118,12 @@ class Logic extends Component {
   }
   parse_term_tree(txt,pos) {
     console.log("parse term tree");
-    var c,n,j,v,tmp,exp,found,isneg;
+    var c,n,j,v,tmp,exp,isneg;
     pos=this.parse_skip(txt,pos);
     isneg=false;
     if (this.parse_isatpos(txt,pos,"-")) { isneg=true; pos++; pos=this.parse_skip(txt,pos); }
     else if (this.parse_isatpos(txt,pos,"~")) { isneg=true; pos++; pos=this.parse_skip(txt,pos); }
     j=pos;
-    found=false;
     v=null;
     while(true) {
       c=txt.charAt(j);
@@ -221,10 +215,10 @@ class Logic extends Component {
     }
     res=this.print_truthtable(res);
     this.show_process("finished");
-    if(Math.pow(2, maxvarnr) == n1){
+    if(Math.pow(2, maxvarnr) === n1){
       document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Tautologia</strong>";
       console.log("TAUTOLOGIA");
-    }else if(Math.pow(2, maxvarnr) == n0){
+    }else if(Math.pow(2, maxvarnr) === n0){
       document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contradicción</strong>";
       console.log("CONTRADICCIÓN");
     }else{
@@ -294,7 +288,6 @@ class Logic extends Component {
   rename_vars_in_formula(tree) {
     console.log("rename vars in formula");
     var renamedvars={}, origvars=[];
-    var res,tmp;
     maxvarnr=0;
     if (typeof tree==="number" || typeof tree==="string") {
       // the tree is just a single variable
@@ -331,7 +324,7 @@ class Logic extends Component {
 
   truthtable(frm,syntax,maxvarnr,origvars) {
     console.log("truth table");
-    var rowcount,v,val,i,j,k,n,r,s,s2,frmstr,row;
+    var rowcount,v,val,i,j,k,n,r,s,s2,frmstr;
     var varvals;
     var reslst,res;
     varvals=new Int32Array(maxvarnr+1);
@@ -347,12 +340,15 @@ class Logic extends Component {
     } else {
       frm=this.add_print_pos_to_formula(frm,origvars,0);
       frmstr=printlst.join(""); // printlst is just an ordinary printed frm
-      frmstr=frmstr.replace(/\"/g, ""); // remove "
+      frmstr=frmstr.replace(/"/g, ""); // remove "
       printarray=[];
       for(i=0;i<frmstr.length;i++) printarray.push("&nbsp;"); // used for each rowprint
     }
     // push varnames
-    for(k=1;k<=maxvarnr;k++) v.push(origvars[k]);
+    for(k=1;k<=maxvarnr;k++){
+      console.log("v.push: "+ origvars[k])
+      v.push(origvars[k]);
+    }
     s=v.join(" ")+" | "+frmstr;
     reslst.push(s);
     // push horizontal line
@@ -377,7 +373,7 @@ class Logic extends Component {
         for(k=0;k<origvars[j].length;k++) s+="&nbsp;";
         v.push(s);
       }
-      if (syntax=="dpll") {
+      if (syntax === "dpll") {
         console.log("entro dpll");
         val=this.print_eval_dpll(frm,varvals);
         s=val;
