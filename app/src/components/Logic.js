@@ -196,37 +196,6 @@ class Logic extends Component {
     n0 = 0;
     this.build_aux(txt);
   }
-  build_aux(txt) {
-    console.log("build aux");
-    this.show_process("starting to parse");
-    if (!txt) {
-      this.show_result("No input.");
-      return;
-    }
-    var res=this.parse(txt);
-    if (res[0]==="error") {
-      this.show_result("Parse error: "+res[1]);
-      return;
-    }
-    if (typeof res[0]==="number") {
-      this.show_process("parsed, detected dimacs syntax");
-    } else {
-      this.show_process("parsed, detected formula syntax");
-    }
-    res=this.print_truthtable(res);
-    this.show_process("finished");
-    if(Math.pow(2, maxvarnr) === n1){
-      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Tautologia</strong>";
-      console.log("TAUTOLOGIA");
-    }else if(Math.pow(2, maxvarnr) === n0){
-      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contradicción</strong>";
-      console.log("CONTRADICCIÓN");
-    }else{
-      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contingencia</strong>";
-      console.log("CONTINGENCIA");
-    }
-    this.show_result("<tt>"+res.replace(/\n/g,"<br>")+"</tt>");
-  }
   handleClick(e) {
     var txt = document.getElementById('propinput').value;
     this.build(txt);
@@ -330,6 +299,8 @@ class Logic extends Component {
     varvals=new Int32Array(maxvarnr+1);
     reslst=[];
     v=[];
+    rowcount=Math.pow(2,maxvarnr);
+    var resultArr = new Array(rowcount+1);
     // make a special formula version with visual position at each op
     printlst=[]; // global used by add_print_pos_to_formula
     printlen=0;  // global used by add_print_pos_to_formula
@@ -342,22 +313,15 @@ class Logic extends Component {
       frmstr=printlst.join(""); // printlst is just an ordinary printed frm
       frmstr=frmstr.replace(/"/g, ""); // remove "
       printarray=[];
-      for(i=0;i<frmstr.length;i++) printarray.push("&nbsp;"); // used for each rowprint
     }
     // push varnames
     for(k=1;k<=maxvarnr;k++){
       console.log("v.push: "+ origvars[k])
       v.push(origvars[k]);
     }
-    s=v.join(" ")+" | "+frmstr;
-    reslst.push(s);
-    // push horizontal line
-    s2="";
-    for(k=0;k<s.length;k++) s2+="&ndash;";
-    reslst.push(s2);
+    v.push(frmstr);
+    resultArr[0] = v;
     // push values to valuation lists and print
-    rowcount=Math.pow(2,maxvarnr);
-    console.log("primisias: "+maxvarnr)
     if (rowcount>1024)
       return "Table would contain "+rowcount+" rows: our printing limit is 1024 rows.";
     for(i=0;i<rowcount;i++) {
@@ -369,9 +333,6 @@ class Logic extends Component {
         if (!r) varvals[j]=1;
         else varvals[j]=0;
         v.push(varvals[j]);
-        s="";
-        for(k=0;k<origvars[j].length;k++) s+="&nbsp;";
-        v.push(s);
       }
       if (syntax === "dpll") {
         console.log("entro dpll");
@@ -381,16 +342,12 @@ class Logic extends Component {
         console.log("no entro dpll");
         val=this.print_eval_formula(frm,varvals,0);
         s=printarray.join("");
-        console.log("asd: "+ s);
       }
-      v.push("&#124; ");
       v.push(s);
-      reslst.push(v.join(""));
+      resultArr[i+1] = v;
     }
-    // print resulting table
-    console.log("print result:: ");
-    console.log(reslst);
-    res=reslst.join("\n");
+    res=resultArr;
+    console.log("res:"+ res[0]);
     return res;
   }
 
@@ -503,7 +460,7 @@ class Logic extends Component {
       printarray[oppos]=this.valfmt(res,depth);
       return res;
     }
-    return -1; // error: should not happen
+    return -1;
   }
   valfmt(s,depth) {
     if(depth>0){
@@ -514,18 +471,75 @@ class Logic extends Component {
       }else{
         n0 += 1
       }
-      return "<b>"+String(s)+"</b>";
+      return String(s);
     }
   }
   constructor(props) {
     super(props);
     this.state = {
+      data: [["p", "q", "p & q"],[1, 1, 1],[1, 0, 0],[0, 1, 0],[0, 0, 0]],
       propinput: ''
     };
   }
-  handleChange(event) {
-    this.setState({propinput: event.target.value});
+  build_aux(txt) {
+    console.log("build aux");
+    this.show_process("starting to parse");
+    if (!txt) {
+      this.show_result("No input.");
+      return;
+    }
+    var res=this.parse(txt);
+    if (res[0]==="error") {
+      this.show_result("Parse error: "+res[1]);
+      return;
+    }
+    if (typeof res[0]==="number") {
+      this.show_process("parsed, detected dimacs syntax");
+    } else {
+      this.show_process("parsed, detected formula syntax");
+    }
+    res=this.print_truthtable(res);
+    this.show_process("finished");
+    document.getElementById('titleR').innerHTML = "Resultado";
+    if(Math.pow(2, maxvarnr) === n1){
+      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Tautologia</strong>";
+    }else if(Math.pow(2, maxvarnr) === n0){
+      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contradicción</strong>";
+    }else{
+      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contingencia</strong>";
+    }
+    console.log("res:::: "+ res[1]);
+    var tt = '<table id="tableR" class="table table-bordered table-striped animated fadeIn"><tbody id="tbodyR">';
+    for(var i = 0; i < res.length; i++){
+      if(i == 0){
+        tt += '<tr class="info">';
+        for(var j = 0; j < res[i].length; j++){
+          if(j == res[i].length-1){
+            tt += '<td>'+res[i][j]+'</td>';
+          }else{
+            tt += '<td class="td-logic">'+res[i][j]+'</td>';
+          }
+        }
+        tt += '</tr>';
+      }else{
+        tt += '<tr>';
+        for(var j = 0; j < res[i].length; j++){
+          tt += '<td>'+res[i][j]+'</td>';
+        }
+        tt += '</tr>';
+      }
+    }
+    tt += '</tbody></table>';
+    console.log(tt);
+    document.getElementById('result').innerHTML = tt;
   }
+
+  handleChange(event) {
+    this.setState({
+      propinput: event.target.value
+    });
+  }
+
   handleClick2(str, event){
     this.setState(function(prevState, props) {
       return {
@@ -543,7 +557,7 @@ class Logic extends Component {
               <div className="col-xs-offset-2 col-xs-8 text-center">
                 <div className="form-group">
                   <div className="input-group">
-                    <input type="text" className="form-control text-logic" id="propinput" placeholder="Ingrese una proposición lógica... (p & q)" value={this.state.propinput} onChange={this.handleChange.bind(this)}/>
+                    <input autoFocus ref={(input) => { this.propInput = input; }} type="text" className="form-control text-logic" id="propinput" placeholder="Ingrese una proposición lógica... (p & q)" value={this.state.propinput} onChange={this.handleChange.bind(this)}/>
                     <div className="input-group-addon btn btn-primary" onClick={this.handleClick.bind(this)}>Resolver</div>
                   </div>
                 </div>
@@ -552,6 +566,13 @@ class Logic extends Component {
             <div className="col-xs-12">
               <div className="col-xs-offset-2 col-xs-8 text-center">
                 <div className="form-group">
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " [")}>[</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ]")}>]</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " (")}>(</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " )")}>)</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-danger btn-block" onClick={this.handleClick2.bind(this, " ")}>{"Eliminar"}</button></div>
+                  <div className="col-xs-4 col-sm-2"><button className="btn btn-primary btn-block" onClick={this.handleClick2.bind(this, " xor")}>{"Resolver"}</button></div>
+                  <br/><br/>
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " &")}>&</button></div>
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " -")}>-</button></div>
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ->")}>-></button></div>
@@ -576,38 +597,9 @@ class Logic extends Component {
             <div className="col-xs-12">
               <div className="col-xs-offset-2 col-xs-8 text-center">
                 <div className="form-group">
-                  <h4>Resultado</h4>
-                  <p id="typeR">La proposicion lógica es una <strong>Contingencia</strong></p>
+                  <p id="titleR"></p>
+                  <p id="typeR"></p>
                   <div id="result">
-                    <table className="table table-bordered table-striped">
-                      <tbody>
-                        <tr className="info">
-                          <td className="td-logic">p</td>
-                          <td className="td-logic">q</td>
-                          <td>p & q</td>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>1</td>
-                          <td><b>1</b></td>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>0</td>
-                          <td><b>0</b></td>
-                        </tr>
-                        <tr>
-                          <td>0</td>
-                          <td>1</td>
-                          <td><b>0</b></td>
-                        </tr>
-                        <tr>
-                          <td>0</td>
-                          <td>0</td>
-                          <td><b>0</b></td>
-                        </tr>
-                      </tbody>
-                    </table>
                   </div>
                 </div>
               </div>

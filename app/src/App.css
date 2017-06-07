@@ -76,3 +76,7 @@ footer {
 .td-logic{
   width: 50px;
 }
+
+.animated-table {
+  animation-delay: 2s;
+}
