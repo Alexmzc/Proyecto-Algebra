@@ -61,6 +61,11 @@ footer {
   border: 1px solid #c0c0cc;
 }
 
+.btn-Delete{
+  width: 10em;
+  margin-left: 3.5em;
+}
+
 .text-logic{
   font-size: 24px;
   height: 48px

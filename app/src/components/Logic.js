@@ -6,6 +6,10 @@ var printarray=[];  // used while printing the truth table
 var n1 = 0;
 var n0 = 0;
 class Logic extends Component {
+  ShowtitleBtn(){
+    var sTbnt=document.getElementById("data-toggle='tooltip'");
+    sTbnt.tooltip();
+  }
   show_result(txt) {
     console.log(txt);
     this.append_to_place(txt,'result');
@@ -96,8 +100,9 @@ class Logic extends Component {
       op=null;
       if (this.parse_isatpos(txt,pos,"&")===true) { op="&"; pos++; }
       else if (this.parse_isatpos(txt,pos,"and")===true) { op="&"; pos+=3; }
-      else if (this.parse_isatpos(txt,pos,"+")===true) { op="+"; pos++; }
+      else if (this.parse_isatpos(txt,pos,"^")===true) { op="&"; pos++; }
       else if (this.parse_isatpos(txt,pos,"xor")===true) { op="+"; pos+=3; }
+      else if (this.parse_isatpos(txt,pos,"+")===true) { op="V"; pos++; }
       else if (this.parse_isatpos(txt,pos,"|")===true) { op="V"; pos++; }
       else if (this.parse_isatpos(txt,pos,"v")===true) { op="V"; pos++; }
       else if (this.parse_isatpos(txt,pos,"V")===true) { op="V"; pos++; }
@@ -547,6 +552,13 @@ class Logic extends Component {
       };
     });
   }
+  handleClick3(str, event){
+    this.setState(function(prevState, props) {
+      return {
+        propinput: str
+      };
+    });
+  }
   render() {
     return (
       <div className="fadeIn animated">
@@ -570,15 +582,14 @@ class Logic extends Component {
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ]")}>]</button></div>
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " (")}>(</button></div>
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " )")}>)</button></div>
-                  <div className="col-xs-4 col-sm-2"><button className="btn btn-danger btn-block" onClick={this.handleClick2.bind(this, " ")}>{"Eliminar"}</button></div>
-                  <div className="col-xs-4 col-sm-2"><button className="btn btn-primary btn-block" onClick={this.handleClick2.bind(this, " xor")}>{"Resolver"}</button></div>
+                  <div className="col-xs-4 col-sm-2 btn-Delete"><button className="btn btn-danger btn-block" onClick={this.handleClick3.bind(this, " ")}>{"Eliminar"}</button></div>
                   <br/><br/>
-                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " &")}>&</button></div>
-                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " -")}>-</button></div>
-                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ->")}>-></button></div>
-                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " |")}>|</button></div>
-                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " <->")}>{"<->"}</button></div>
-                  <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " xor")}>{"xor"}</button></div>
+                  <div className="col-xs-4 col-sm-2"><button title="CONYUCTIVA" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " &")}>&</button></div>
+                  <div className="col-xs-4 col-sm-2"><button title="NEGACIÓN" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " -")}>-</button></div>
+                  <div className="col-xs-4 col-sm-2"><button title="CONDICIONAL" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ->")}>&rArr;</button></div>
+                  <div className="col-xs-4 col-sm-2"><button title="DISYUNTIVA" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " |")}>|</button></div>
+                  <div className="col-xs-4 col-sm-2"><button title="BICONDICIONAL" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " <->")}>&hArr;</button></div>
+                  <div className="col-xs-4 col-sm-2"><button title="XOR" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " xor")}>{"xor"}</button></div>
                   <br/><br/>
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " p")}>p</button></div>
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " q")}>q</button></div>
