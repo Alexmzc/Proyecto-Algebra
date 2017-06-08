@@ -12,9 +12,10 @@ class Home extends Component {
           <Link to="/sets" className="btn btn-primary btn-sm">Ver mas información...</Link>
         </div>
         <div className="col-md-4">
-          <h4>Resuelve Logica Proposicional</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut dignissim nulla, vitae consectetur ante.
-            Nullam vitae lorem eget diam tincidunt vehicula.</p>
+          <h4>Resuelve Lógica Proposicional</h4>
+          <p>Resuelve tus problemas de Lógica Proposicional usandando esta útil calculadora
+          donde encontraras todas las operaciónes lógica necesarias para construir tu Tabla
+          de Verdad junto con su Nivel de Verdad.</p>
           <Link to="/logic" className="btn btn-primary btn-sm">Resolver Logíca Proposicional...</Link>
         </div>
       </div>

@@ -77,7 +77,27 @@ footer {
 .wh2{
   width: 20em;
 }
-
+.wh3{
+  width: 25em;
+}
+.wh4{
+  width: 45em;
+}
+.wh5{
+  width: 10em;
+}
+.tab3em{
+  margin-left: 3em;
+}
+.tab15em{
+  margin-left: 15em;
+}
+.tab20em{
+  margin-left: 20em;
+}
+.tab25em{
+  margin-left: 25em;
+}
 .td-logic{
   width: 50px;
 }
