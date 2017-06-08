@@ -7,16 +7,19 @@ class Sets extends Component {
     return (
       <div className="fadeIn animated">
 	      <div className="container">
-	      	<div>
-			      <h1>Conjuntos</h1>
-			      <p>La idea de conjuntos se puede expresar como una colección de 
-		      	  elementos o cosas que resultan tener algo en común</p>
-				  	<p>Tal conjunto se representa mediante uso de Llaves ({i} {f}) donde 
-			      dentro de tales llaves se encontrarán los elementos propios del Conjunto.
-			      </p>
-			      <pre className="wh2 bg-info">      &rarr; Ejemplo: {i} 1,2,3,4 {f}</pre>
-	        </div>
-	        <div className="separator"></div>
+	      	<div className="row">
+	      		<h1 className="text-center">Conjuntos</h1>
+	        	<div className="col-md-10 col-md-offset-1">
+			      	<div>
+					      <p>La idea de conjuntos se puede expresar como una colección de 
+				      	  elementos o cosas que resultan tener algo en común. Tal conjunto se representa 
+				      	  mediante uso de Llaves (<b>{i} {f}</b>) donde dentro de tales llaves se encontrarán 
+				      	  los elementos propios del Conjunto.</p>
+					      <p><pre className="wh2 tab25em bg-info">      &rarr; Ejemplo: {i} 1,2,3,4 {f}</pre></p>
+			        </div>
+			      </div>
+			    </div>
+					<div className="separator"></div>
 	        <hr/>
 	        <h4>Existen dos formas de Escrbir un Conjunto:</h4>
 	        <h5>Por Extensión y por Comprensión.-</h5>
@@ -27,11 +30,13 @@ class Sets extends Component {
 		        		<p><b>Por Extensión:</b> Que significa escribir explicitamente los elementos
 						    del conjunto, asi como en el ejemplo anterior donde todos los elementos 
 						    se encuentran dentro de las llaves.</p>
-						    <div className="tab3em"><p >Sea A un conjunto de colores: A = {i} Rojo,Verde,Azul,Amarillo {f} donde se 
-							    especifican exactamente la cantidad y cuales colores posee.</p>
+						    <div className="tab3em">
+						    	<p>Sea A un conjunto de colores: 
+						    	<pre className="wh2 tab15em bg-info">  A = {i} Rojo,Verde,Azul,Amarillo {f}</pre>
+						    	Donde se especifican exactamente la cantidad y cuales colores posee.</p>
 							    <p >O también .-</p>
 							    <p >Sea B un conjunto de los 10 primeros números Naturales:</p>
-							    <pre className="wh1 tab20em bg-info">         B = {i} 1,2,3,4,5,6,7,8,9,10 {f}</pre>
+							    <pre className="wh2 tab20em bg-info">    B = {i} 1,2,3,4,5,6,7,8,9,10 {f}</pre>
 						    </div>
 		        	</div>
 	        	</div>
@@ -78,9 +83,9 @@ class Sets extends Component {
 		        	<div className="col-md-10 col-md-offset-1">
 		        		<p><b>Ejemplos de Conjuntos Infinitos</b> podemos encontrar a los siguientes:</p>
 		        		<div className="tab3em">
-			        		<p><pre className="wh2 tab20em bg-info">Sea A = {i} <b>N</b> {f}  ó  Sea B = {i} <b>R</b> {f}</pre>
+			        		<p><pre className="wh3 tab20em bg-info">Sea A = {i} <b>N</b> {f}    ó también    Sea B = {i} <b>R</b> {f}</pre>
 			        		Donde <b>N</b> corresponde a los Números
-			        		Naturales, lo que significa que encontraremos números entre 1 y infito positivo.</p>
+			        		Naturales, lo que significa que encontraremos números entre <b>1</b> e <b>infito positivo.</b></p>
 			        		<p>Y donde <b>R</b> corresponde a todos los números Reales.</p>
 		        		</div>
 		        	</div>
@@ -93,7 +98,7 @@ class Sets extends Component {
 				        esta acción representada por el signo <b>#</b> junto con el nombre del conjunto:</p>
 				        <div className="tab3em">
 					        <p>Teniendo en cuenta el ejemplo anterior:
-					        <pre className="tab20em wh2 bg-info">     Sea A = {i} 1,2,3,4,5,6 {f}.-</pre>
+					        <pre className="tab25em wh2 bg-info">     Sea A = {i} 1,2,3,4,5,6 {f}.-</pre>
 					        A simple vista vemos que tiene 6 elementos, por lo tanto su Cardinalidad seria 6.</p>
 					        <p>Representando ese número de la forma correcta, quedaria así:
 					        <pre className="tab20em wh1 bg-info">       #A = 6      o también       &rarr;  |A| = 6.</pre></p>
@@ -105,8 +110,8 @@ class Sets extends Component {
 					<div className="separator"></div>
 					<hr/>
 					<div>
-						<h4>Subconjuntos:</h4>
 			    	<div className="row m-top-30">
+			    		<h4>Subconjuntos: &sub;</h4>
 		        	<div className="col-md-10 col-md-offset-1">
 			        	<p>Cuando hablamos de Subconjuntos nos referiremos a aquel o aquellos conjuntos que forman parte de un Conjunto mas grande. Dicho de otra manera, 
 					    	el conjunto B es subconjunto del conjunto A, ya que B siendo conjunto también resulta ser elemento de A.
@@ -204,14 +209,14 @@ class Sets extends Component {
 		    	<hr/>
 		    	<div>	    
 				    <div className="row m-top-30">
-				    	<h4>Conjunto Universal:</h4>
+				    	<h4>Conjunto Universal: U</h4>
 		        	<div className="col-md-10 col-md-offset-1">
 		        		<p>Cuando hablamos de Conjunto Universal, cuando nos referimos a aquel conjunto que puede
 		        		contener a dos o más de dos conjuntos teniendo como base una caracteristica en común.-</p>
 		        		<p> Por Ejemplo.-
-		        		<pre className="bg-info">     Sea A = {i} Estudiantes de 8vo año A {f} ; Sea B = {i} Estudiantes de 8vo año B {f} ; Sea C = {i} Estudiantes de 8vo año C {f}</pre></p>
+		        		<pre className="bg-info">     Sea A = {i} Estudiantes de 8vo año A {f}   ;   Sea B = {i} Estudiantes de 8vo año B {f}   ;   Sea C = {i} Estudiantes de 8vo año C {f}</pre></p>
 		        		<p className="tab3em">Donde El conjunto Universal resulta ser:
-		        		<pre className="wh2 tab20em bg-info">U = {i} Estudiantes de 8vo año {f}</pre></p>
+		        		<pre className="wh2 tab20em bg-info">  U = {i} Estudiantes de 8vo año {f}</pre></p>
 		        	</div>
 				    </div>
 					</div>
@@ -235,7 +240,47 @@ class Sets extends Component {
 			    <hr/>
 			    <div className="separator"></div>
 			    <hr/>
-	      </div>
+			    <div>	    
+				    <div className="row m-top-30">
+			    		<h4>Conjunto Potencia de un Conjunto</h4>
+			    		<div className="col-md-10 col-md-offset-1">
+			    		</div>
+			    	</div>
+					</div>
+					<hr/>
+			    <div className="separator"></div>
+			    <hr/>
+			    <div>	    
+				    <div className="row m-top-30">
+							<h4>Unión de Conjuntos</h4>
+							<div className="col-md-10 col-md-offset-1">
+			    		</div>
+						</div>
+					</div>
+					<hr/>
+			    <div className="separator"></div>
+			    <hr/>
+			    <div>	    
+				    <div className="row m-top-30">
+							<h4>Intersección de Conjuntos</h4>
+							<div className="col-md-10 col-md-offset-1">
+			    		</div>
+						</div>
+					</div>
+					<hr/>
+			    <div className="separator"></div>
+			    <hr/>
+			    <div>	    
+				    <div className="row m-top-30">
+							<h4>Complemento de un Conjunto</h4>
+							<div className="col-md-10 col-md-offset-1">
+			    		</div>
+						</div>
+					</div>
+					<hr/>
+			    <div className="separator"></div>
+			    <hr/>
+			  </div>
 	    </div>
     );
   }
