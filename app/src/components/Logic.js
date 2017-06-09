@@ -6,10 +6,6 @@ var printarray=[];  // used while printing the truth table
 var n1 = 0;
 var n0 = 0;
 class Logic extends Component {
-  ShowtitleBtn(){
-    var sTbnt=document.getElementById("data-toggle='tooltip'");
-    sTbnt.tooltip();
-  }
   show_result(txt) {
     console.log(txt);
     this.append_to_place(txt,'result');

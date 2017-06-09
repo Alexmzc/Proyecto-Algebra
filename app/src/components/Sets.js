@@ -73,9 +73,9 @@ class Sets extends Component {
 		        		<p><b>Ejemplos de Conjuntos Finitos</b> podemos encontrar a los siguientes:</p>
 		        		<div className="tab3em">
 		        			<p><pre className="wh2 tab15em bg-info">     Sea A = {i} 1,2,3,4,5,6 {f}</pre> Donde es posible apreciar la cantidad
-			        		exacta de elemetos que posee.</p>
+			        		exacta de elementos que posee.</p>
 			        		<p>Otro Ejemplo: <pre className="wh2 tab15em bg-info"> Tenemos B = {i} Colores Primarios {f}</pre> Donde B entonces 
-			        		contendra tres elemetos que corresponden a <b>Rojo, Verde</b> y <b>Azul</b>.</p>
+			        		contendra tres elementos que corresponden a <b>Rojo, Verde</b> y <b>Azul</b>.</p>
 		        		</div>
 		        	</div> 
 		        </div> 
@@ -125,7 +125,7 @@ class Sets extends Component {
 			        		<p>Tenemos los conjuntos <pre className="tab15em wh3 bg-info"> A = {i} 1,2,3,4,5 {f}    y    B = {i} <b>N</b> {f}</pre>
 			        		Tal que <b>N</b> son todos los Números Naturales, desde el 1 al 
 			        		infito positivo.</p>
-			        		<p>Entonces podemos decir que A es subconjunto de B, por que los elemetos
+			        		<p>Entonces podemos decir que A es subconjunto de B, por que los elementos
 			        		que se encunetran en A tambien se encuantran en B.</p>
 				        </div>
 				        <p>Pero cuidado, que si al decir que B es un subconjunto de A no significa que A sea 
@@ -180,7 +180,7 @@ class Sets extends Component {
 		        		<p>Llamamos a un conjunto vacío a aquel cuya cardinalidad es 0, es decir
 		        		no contiene elementos. Este tipo de conjunto se usa para referirse a situaciones
 		        		en las que es imposible encontrar elementos dentro de un rango, por ejemplo:</p>
-		        		<p>Encontrar el conjunto de números <b>menores a 1</b> y <b>mayores a 2</b>, tales elemetos no Existen
+		        		<p>Encontrar el conjunto de números <b>menores a 1</b> y <b>mayores a 2</b>, tales elementos no Existen
 		        		por lo tanto se denomina que es un conjunto Vacío, y se denota de la siguiente forma.-
 		        		<pre className="wh2 tab20em bg-info">        &empty; = {i} {f}, &rarr; #&empty; = 0.</pre></p>
 		        	</div>
@@ -242,8 +242,46 @@ class Sets extends Component {
 			    <hr/>
 			    <div>	    
 				    <div className="row m-top-30">
-			    		<h4>Conjunto Potencia de un Conjunto</h4>
+			    		<h4>Conjunto Potencia de un Conjunto: <b>P(</b>A<b>)</b></h4>
 			    		<div className="col-md-10 col-md-offset-1">
+			    			<p>Se refiere a la cantidad de conjuntos que se pueden formar con un mismo conjunto, donde estos conjuntos 
+			    			reciben el nombre de subconjuntos del conjunto tratado. Dichos subconjuntos que son elementos se obtienen
+			    			por medio de la cardinalidad del conjunto finito tratado, que pasa a ser potencia de la base 2. De esta
+			    			forma se obtienen todas las combinaciones posibles.-</p>
+			    			<p>Por Ejemplo:
+			    			<pre className="wh6 tab8em bg-info">  Sea A = {i} 1,2,4,8 {f}</pre></p>
+			    			<p className="tab3em">Se tiene un conjunto <b>A</b> Finito, cuya cardinalidad es <b>4</b>, entonces decimos que dicha cardinalidad pasa
+			    			a ser potencia de base <b>2</b> asi obtenemos que 2<sup>4</sup> = 16 posibles combinaciones.-</p>
+			    			<table className="tab20em wh3 bg-info table table-bordered table-striped">
+									<tr>
+										<td>A<sub>1</sub> = {i} &empty; {f}</td>
+										<td>A<sub>5</sub> = {i} 8 {f}</td>
+										<td>A<sub>9</sub> = {i} 2,4 {f}</td>
+										<td>A<sub>13</sub> = {i} 1,2,8 {f}</td>
+									</tr>
+									<tr>
+										<td>A<sub>2</sub> = {i} 1 {f}</td>
+										<td>A<sub>6</sub> = {i} 1,2 {f}</td>
+										<td>A<sub>10</sub> = {i} 2,8 {f}</td>
+										<td>A<sub>14</sub> = {i} 2,4,8 {f}</td>
+									</tr>
+									<tr>
+										<td>A<sub>3</sub> = {i} 2 {f}</td>
+										<td>A<sub>7</sub> = {i} 1,4 {f}</td>
+										<td>A<sub>11</sub> = {i} 4,8 {f}</td>
+										<td>A<sub>15</sub> = {i} 1,4,8 {f}</td>
+									</tr>
+									<tr>
+										<td>A<sub>4</sub> = {i} 4 {f}</td>
+										<td>A<sub>8</sub> = {i} 1,8 {f}</td>
+										<td>A<sub>12</sub> = {i} 1,2,4 {f}</td>
+										<td>A<sub>16</sub> = {i} 1,2,4,8 {f}</td>
+									</tr>
+								</table>
+								<p>Cada uno de estos Subconjuntos pasa a ser un elemento de del conjunto potencia resultante, 
+								comenzando siempre por el conjunto vacío primer elemento y como último será el conjunto mismo. </p>
+								<p>Como resultado de el Conjunto Potencia de A:
+								<pre className="wh2 tab20em bg-info">   Sera: <b>P(</b>A<b>)</b> = {i} A<sub>1</sub> hasta A<sub>16</sub> {f}</pre></p>
 			    		</div>
 			    	</div>
 					</div>
@@ -252,8 +290,23 @@ class Sets extends Component {
 			    <hr/>
 			    <div>	    
 				    <div className="row m-top-30">
-							<h4>Unión de Conjuntos</h4>
+							<h4>Unión de Conjuntos: A &cup; B</h4>
 							<div className="col-md-10 col-md-offset-1">
+								<p>La Unión de dos conjuntos corresponde al conjunto resultante tomando en cuenta a
+								todos los elementos que se encunetran tanto en el conjunto <b>A</b> como en el conjunto <b>B</b> y 
+								se utiliza el siguiente símbolo para representar una Unión: <b>&cup;</b>.</p>
+								<p>Por Ejemplo.-
+								<pre className="wh3 tab20em bg-info"> Sea A = {i} 1,2,3,4,5 {f}  y  B = {i} 4,5,6,7 {f}</pre></p>
+								<p>Donde podemos darnos cuenta que tenemos los siguiente grupos de elementos:</p>
+								<pre className="wh1 tab3em bg-info">
+								  Elementos: 1,2,3 ; Pertenecen solo al conjunto A.-<br/>
+								  Elementos:  6,7  ; Pertenecen solo al conjunto B.-<br/>
+								  Elementos:  4,5  ; Pertenecen tanto a A como a B.-
+								</pre>
+								<p>Como ya se definió anteriormente, podemos decir que el conjunto Unión entre los conjuntos A y B
+								resultan ser <b>todos</b> los elementos que se encuentren en ambos conjuntos tratados:</p>
+								<p className="tab3em">Es decir:
+								<pre className="wh2 tab15em bg-info">    A &cup; B = {i} 1,2,3,4,5,6,7 {f} </pre></p>
 			    		</div>
 						</div>
 					</div>
@@ -262,8 +315,23 @@ class Sets extends Component {
 			    <hr/>
 			    <div>	    
 				    <div className="row m-top-30">
-							<h4>Intersección de Conjuntos</h4>
+							<h4>Intersección de Conjuntos: A &cap; B</h4>
 							<div className="col-md-10 col-md-offset-1">
+								<p>Cuando hablamos de Intersección de Conjuntos nos referiremos a todos aquellos elementos que pertenecen 
+								a ambos conjuntos tratados, es decir los elementos a considerar serán los que esten el conjunto A y en el 
+								conjunto B, y se utiliza el siguiente símbolo para representarlo: <b>&cap;</b>.</p>
+								<p>Ejemplo.-
+								<pre className="wh3 tab20em bg-info"> Sea A = {i} 1,2,3,4,5 {f}  y  B = {i} 4,5,6,7 {f}</pre></p>
+								<p>Donde podemos darnos cuenta que tenemos los siguiente grupos de elementos:</p>
+								<pre className="wh1 tab3em bg-info">
+								  Elementos: 1,2,3 ; Pertenecen solo al conjunto A.-<br/>
+								  Elementos:  6,7  ; Pertenecen solo al conjunto B.-<br/>
+								  Elementos:  4,5  ; Pertenecen tanto a A como a B.-
+								</pre>
+								<p>Como ya se definió anteriormente, podemos decir que el conjunto de Intersección entre los conjuntos A y B
+								resultan ser <b>solo</b> aquellos elementos que pertenescan tanto a <b>A</b> como a <b>B</b>:</p>
+								<p className="tab3em">Es decir:
+								<pre className="wh6 tab15em bg-info">    A &cap; B = {i} 4,5 {f} </pre></p>
 			    		</div>
 						</div>
 					</div>
@@ -272,8 +340,15 @@ class Sets extends Component {
 			    <hr/>
 			    <div>	    
 				    <div className="row m-top-30">
-							<h4>Complemento de un Conjunto</h4>
+							<h4>Complemento de un Conjunto: A<b>'</b></h4>
 							<div className="col-md-10 col-md-offset-1">
+							<p>El Complemento de un Conjunto resulta ser todos aquellos elementos que no pertenescan a dicho conjunto </p>
+							<p>Por Ejemplo: Obtener el complemeto del conjunto <b>A</b>, teniendo en cuenta que <b>U</b> corresponde al Universo.-
+								<pre className="wh1 tab20em bg-info"> Sea A = {i} 3,4,5,6 {f}   y   U = {i} 1,2,3,4,5,6,7,8,9 {f}</pre></p>
+								<p>Entonces comparamos:</p>
+								<pre className="wh2 tab3em bg-info">        A = {i} 3,4,5,6 {f}<br/>    U = {i} 1,2,3,4,5,6,7,8,9 {f}</pre>
+								<p>Como resultado son todos los elementos que no pertenecen a <b>A</b>:
+								<pre className="wh6 tab15em bg-info">   A<b>'</b> = {i} 1,2,7,8,9 {f}</pre></p>
 			    		</div>
 						</div>
 					</div>
