@@ -294,11 +294,10 @@ class Logic extends Component {
 
   truthtable(frm,syntax,maxvarnr,origvars) {
     console.log("truth table");
-    var rowcount,v,val,i,j,k,n,r,s,s2,frmstr;
+    var rowcount,v,val,i,j,k,n,r,s,frmstr;
     var varvals;
-    var reslst,res;
+    var res;
     varvals=new Int32Array(maxvarnr+1);
-    reslst=[];
     v=[];
     rowcount=Math.pow(2,maxvarnr);
     var resultArr = new Array(rowcount+1);
@@ -405,12 +404,17 @@ class Logic extends Component {
     }
   }
   print_eval_formula(frm,varvals,depth) {
+    console.log("frm"+ frm);
+    console.log("varvals"+ varvals);
+    console.log("depth"+ depth);
     console.log("print eval formula");
     var op,oppos,j,tmp,tmp2,res;
     tmp=typeof frm;
     if (tmp==="number") return varvals[frm];
     op=frm[0];
     oppos=frm[1];
+    console.log("opps": oppos);
+    console.log("op": op);
     if (op==="-") {
       tmp=this.print_eval_formula(frm[2],varvals,depth+1);
       if (tmp===1) res=0;
@@ -472,6 +476,7 @@ class Logic extends Component {
       }else{
         n0 += 1
       }
+      console.log(s);
       return String(s);
     }
   }
@@ -509,13 +514,12 @@ class Logic extends Component {
     }else{
       document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contingencia</strong>";
     }
-    console.log("res:::: "+ res[1]);
     var tt = '<table id="tableR" class="table table-bordered table-striped animated fadeIn"><tbody id="tbodyR">';
     for(var i = 0; i < res.length; i++){
-      if(i == 0){
+      if(i === 0){
         tt += '<tr class="info">';
         for(var j = 0; j < res[i].length; j++){
-          if(j == res[i].length-1){
+          if(j === res[i].length-1){
             tt += '<td>'+res[i][j]+'</td>';
           }else{
             tt += '<td class="td-logic">'+res[i][j]+'</td>';
@@ -524,8 +528,13 @@ class Logic extends Component {
         tt += '</tr>';
       }else{
         tt += '<tr>';
-        for(var j = 0; j < res[i].length; j++){
-          tt += '<td>'+res[i][j]+'</td>';
+        for(j = 0; j < res[i].length; j++){
+          if(j === res[i].length-1){
+            var f = res[i][j].split("");
+            tt += '<td>'+f[f.length-1]+'</td>';
+          }else{
+            tt += '<td>'+res[i][j]+'</td>';
+          }
         }
         tt += '</tr>';
       }
