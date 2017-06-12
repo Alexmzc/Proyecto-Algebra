@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 var i ='{';
 var f ='}';
 class Sets extends Component {
@@ -8,7 +7,7 @@ class Sets extends Component {
       <div className="fadeIn animated">
 	      <div className="container">
 	      	<div className="row">
-	      		<h1 className="text-center">Conjuntos</h1>
+						<h1 className="text-center">Conjuntos</h1>
 	        	<div className="col-md-10 col-md-offset-1">
 			      	<div>
 					      <p>La idea de conjuntos se puede expresar como una colección de 
