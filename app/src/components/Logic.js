@@ -588,10 +588,10 @@ class Logic extends Component {
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " )")}>)</button></div>
                   <div className="col-xs-4 col-sm-4"><button className="btn btn-danger btn-block" onClick={this.handleClick3.bind(this, " ")}>{"Eliminar"}</button></div>
                   <br/><br/>
-                  <div className="col-xs-4 col-sm-2"><button title="CONYUCTIVA" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " &")}>&</button></div>
+                  <div className="col-xs-4 col-sm-2"><button title="CONYUCTIVA" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " &")}>&#8743;</button></div>
                   <div className="col-xs-4 col-sm-2"><button title="NEGACIÓN" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ~")}>~</button></div>
                   <div className="col-xs-4 col-sm-2"><button title="CONDICIONAL" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ->")}>&rArr;</button></div>
-                  <div className="col-xs-4 col-sm-2"><button title="DISYUNTIVA" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " |")}>|</button></div>
+                  <div className="col-xs-4 col-sm-2"><button title="DISYUNTIVA" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " |")}>&#8744;</button></div>
                   <div className="col-xs-4 col-sm-2"><button title="BICONDICIONAL" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " <->")}>&hArr;</button></div>
                   <div className="col-xs-4 col-sm-2"><button title="XOR" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " xor")}>&#8891;</button></div>
                   <br/><br/>
