@@ -3,8 +3,6 @@ var maxvarnr=0; // used by the rename_vars_in_formula
 var printlen=0; // used while printing
 var printlst=[]; // used while printing
 var printarray=[];  // used while printing the truth table
-var n1 = 0;
-var n0 = 0;
 class Logic extends Component {
   show_result(txt) {
     console.log(txt);
@@ -193,8 +191,6 @@ class Logic extends Component {
   build(txt){
     console.log("build");
     document.getElementById('result').innerHTML = "";
-    n1 = 0;
-    n0 = 0;
     this.build_aux(txt);
   }
   handleClick(e) {
@@ -471,12 +467,6 @@ class Logic extends Component {
     if(depth>0){
       return String("");
     }else{
-      if(s){
-        n1 += 1
-      }else{
-        n0 += 1
-      }
-      console.log(s);
       return String(s);
     }
   }
@@ -506,14 +496,8 @@ class Logic extends Component {
     }
     res=this.print_truthtable(res);
     this.show_process("finished");
-    document.getElementById('titleR').innerHTML = "Resultado";
-    if(Math.pow(2, maxvarnr) === n1){
-      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Tautologia</strong>";
-    }else if(Math.pow(2, maxvarnr) === n0){
-      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contradicción</strong>";
-    }else{
-      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contingencia</strong>";
-    }
+    var n1 = 0;
+    var n2 = 0;
     var tt = '<table id="tableR" class="table table-bordered table-striped animated fadeIn"><tbody id="tbodyR">';
     for(var i = 0; i < res.length; i++){
       if(i === 0){
@@ -532,6 +516,11 @@ class Logic extends Component {
           if(j === res[i].length-1){
             var f = res[i][j].split("");
             tt += '<td>'+f[f.length-1]+'</td>';
+            if(f[f.length-1] === "1"){
+              n1 += 1;
+            }else{
+              n2 += 1;
+            }
           }else{
             tt += '<td>'+res[i][j]+'</td>';
           }
@@ -540,6 +529,14 @@ class Logic extends Component {
       }
     }
     tt += '</tbody></table>';
+    document.getElementById('titleR').innerHTML = "Resultado";
+    if(Math.pow(2, maxvarnr) === n1){
+      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Tautologia</strong>";
+    }else if(Math.pow(2, maxvarnr) === n2){
+      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contradicción</strong>";
+    }else{
+      document.getElementById('typeR').innerHTML = "La proposición lógica es una <strong>Contingencia</strong>";
+    }
     console.log(tt);
     document.getElementById('result').innerHTML = tt;
   }
@@ -551,10 +548,12 @@ class Logic extends Component {
   }
 
   handleClick2(str, event){
-    this.setState(function(prevState, props) {
-      return {
-        propinput: prevState.propinput + str
-      };
+    var el = document.getElementById('propinput');
+    var val = el.value;
+    console.log(val.slice(0, el.selectionStart).length);
+    val = val.substring(0, val.slice(0, el.selectionStart).length) + str + val.substring(val.slice(0, el.selectionStart).length);
+    this.setState({
+      propinput: val
     });
   }
   handleClick3(str, event){
@@ -587,7 +586,7 @@ class Logic extends Component {
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ]")}>]</button></div>
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " (")}>(</button></div>
                   <div className="col-xs-4 col-sm-2"><button className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " )")}>)</button></div>
-                  <div className="col-xs-4 col-sm-2 btn-Delete"><button className="btn btn-danger btn-block" onClick={this.handleClick3.bind(this, " ")}>{"Eliminar"}</button></div>
+                  <div className="col-xs-4 col-sm-4"><button className="btn btn-danger btn-block" onClick={this.handleClick3.bind(this, " ")}>{"Eliminar"}</button></div>
                   <br/><br/>
                   <div className="col-xs-4 col-sm-2"><button title="CONYUCTIVA" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " &")}>&</button></div>
                   <div className="col-xs-4 col-sm-2"><button title="NEGACIÓN" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " -")}>-</button></div>
