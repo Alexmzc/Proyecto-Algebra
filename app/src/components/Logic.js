@@ -97,7 +97,7 @@ class Logic extends Component {
       if (this.parse_isatpos(txt,pos,"&")===true) { op="&"; pos++; }
       else if (this.parse_isatpos(txt,pos,"and")===true) { op="&"; pos+=3; }
       else if (this.parse_isatpos(txt,pos,"^")===true) { op="&"; pos++; }
-      else if (this.parse_isatpos(txt,pos,"xor")===true) { op="+"; pos+=3; }
+      else if (this.parse_isatpos(txt,pos,"xor")===true) { op="xor"; pos+=3; }
       else if (this.parse_isatpos(txt,pos,"+")===true) { op="V"; pos++; }
       else if (this.parse_isatpos(txt,pos,"|")===true) { op="V"; pos++; }
       else if (this.parse_isatpos(txt,pos,"v")===true) { op="V"; pos++; }
@@ -456,7 +456,7 @@ class Logic extends Component {
       }
       printarray[oppos]=this.valfmt(res,depth);
       return res;
-    } else if (op==="+") {
+    } else if (op==="xor") {
       tmp=this.print_eval_formula(frm[2],varvals,depth+1);
       tmp2=this.print_eval_formula(frm[3],varvals,depth+1);
       tmp=tmp+tmp2;
@@ -590,7 +590,7 @@ class Logic extends Component {
                   <div className="col-xs-4 col-sm-2 btn-Delete"><button className="btn btn-danger btn-block" onClick={this.handleClick3.bind(this, " ")}>{"Eliminar"}</button></div>
                   <br/><br/>
                   <div className="col-xs-4 col-sm-2"><button title="CONYUCTIVA" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " &")}>&</button></div>
-                  <div className="col-xs-4 col-sm-2"><button title="NEGACIÓN" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " -")}>-</button></div>
+                  <div className="col-xs-4 col-sm-2"><button title="NEGACIÓN" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ~")}>~</button></div>
                   <div className="col-xs-4 col-sm-2"><button title="CONDICIONAL" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " ->")}>&rArr;</button></div>
                   <div className="col-xs-4 col-sm-2"><button title="DISYUNTIVA" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " |")}>|</button></div>
                   <div className="col-xs-4 col-sm-2"><button title="BICONDICIONAL" className="btn btn-default btn-block" onClick={this.handleClick2.bind(this, " <->")}>&hArr;</button></div>
